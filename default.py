@@ -159,6 +159,7 @@ THEME4           = uservar.THEME4
 THEME5           = uservar.THEME5
 ICONBUILDS       = uservar.ICONBUILDS if not uservar.ICONBUILDS == 'http://' else ICON
 ICONMAINT        = uservar.ICONMAINT if not uservar.ICONMAINT == 'http://' else ICON
+ICONSPEED        = uservar.ICONSPEED if not uservar.ICONSPEED == 'http://' else ICON
 ICONAPK          = uservar.ICONAPK if not uservar.ICONAPK == 'http://' else ICON
 ICONADDONS       = uservar.ICONADDONS if not uservar.ICONADDONS == 'http://' else ICON
 ICONYOUTUBE      = uservar.ICONYOUTUBE if not uservar.ICONYOUTUBE == 'http://' else ICON
@@ -817,7 +818,7 @@ def maintMenu(view=None):
     addDir ('[B]Misc Maintenance[/B]'     ,'maint', 'misc',   icon=ICONMAINT, themeit=THEME1)
     if view == "misc" or SHOWMAINT == 'true':
         addFile('Kodi 17 Fix',                    'kodi17fix',       icon=ICONMAINT, themeit=THEME3)
-        addDir ('Speed Test',                     'speedtest',       icon=ICONMAINT, themeit=THEME3)
+        addDir ('Speed Test',                     'speedtest',       icon=ICONSPEED, themeit=THEME3)
         addFile('Enable Unknown Sources',         'unknownsources',  icon=ICONMAINT, themeit=THEME3)
         addFile('Reload Skin',                    'forceskin',       icon=ICONMAINT, themeit=THEME3)
         addFile('Reload Profile',                 'forceprofile',    icon=ICONMAINT, themeit=THEME3)
@@ -893,7 +894,7 @@ def maintMenu(view=None):
 
 #########################################NET TOOLS#############################################
 def net_tools(view=None):
-    addDir ('Speed Tester' ,'speedtestM', icon=ICONAPK, themeit=THEME1)
+    addDir ('Speed Tester' ,'speedtestM', icon=ICONSPEED, themeit=THEME1)
     if HIDESPACERS == 'No': addFile(wiz.sep(), '', themeit=THEME3)
     addDir ('View IP Address & MAC Address',        'viewIP',    icon=ICONMAINT, themeit=THEME1)
     setView('files', 'viewType')
@@ -910,13 +911,13 @@ def viewIP():
     setView('files', 'viewType')
 
 def speedTest():
-    addFile('Run Speed Test',             'runspeedtest',      icon=ICONMAINT, themeit=THEME3)
+    addFile('Run Speed Test',             'runspeedtest',      icon=ICONSPEED, themeit=THEME3)
     if os.path.exists(SPEEDTESTFOLD):
         speedimg = glob.glob(os.path.join(SPEEDTESTFOLD, '*.png'))
         speedimg.sort(key=lambda f: os.path.getmtime(f), reverse=True)
         if len(speedimg) > 0:
-            addFile('Clear Results',          'clearspeedtest',    icon=ICONMAINT, themeit=THEME3)
-            addFile(wiz.sep('Previous Runs'), '', icon=ICONMAINT, themeit=THEME3)
+            addFile('Clear Results',          'clearspeedtest',    icon=ICONSPEED, themeit=THEME3)
+            addFile(wiz.sep('Previous Runs'), '', icon=ICONSPEED, themeit=THEME3)
             for item in speedimg:
                 created = datetime.fromtimestamp(os.path.getmtime(item)).strftime('%m/%d/%Y %H:%M:%S')
                 img = item.replace(os.path.join(SPEEDTESTFOLD, ''), '')
